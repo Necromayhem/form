@@ -94,6 +94,7 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
 .feedback-form {
   max-width: 637px;
   margin: 0 auto;
+  margin-top: 68px;
   padding: 30px;
   background-color: #FFFFFF;
   border-radius: 8px;
