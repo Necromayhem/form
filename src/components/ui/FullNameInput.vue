@@ -50,11 +50,21 @@ watch(inputValue, (newVal) => {
 }
 
 .form-input {
-  padding: 10px;
-  border: 1px solid #e0e0e0;
+  max-width: 260px;
+  height: 56px;
+  padding: 14px 16px;
+  border: none;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+  background-color: #F7F7FB;
   transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: #A0A3BD;
+  opacity: 1;
 }
 
 .form-input--error {
@@ -63,9 +73,11 @@ watch(inputValue, (newVal) => {
 }
 
 label {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   font-size: 14px;
-  color: #333;
+  line-height: 20px;
+  font-weight: 400;
+  color: #6F6C90;
 }
 
 @keyframes shake {

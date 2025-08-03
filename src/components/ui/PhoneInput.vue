@@ -16,12 +16,24 @@ const { value, errorMessage, meta } = useField<string>(props.name, (value) => {
   validateOnValueUpdate: false 
 });
 
-const phone = ref(value.value || '+7 (');
+const phone = ref(value.value || '');
 
 watch(phone, (newValue) => {
+  if (!newValue || newValue === '+7 (') {
+    phone.value = '';
+    value.value = '';
+    return;
+  }
+
   let formatted = newValue.replace(/\D/g, '');
   
-  if (formatted.length > 1) {
+  if (!formatted) {
+    phone.value = '';
+    value.value = '';
+    return;
+  }
+  
+  if (formatted.startsWith('7')) {
     formatted = formatted.substring(1);
   }
   
@@ -54,7 +66,7 @@ watch(phone, (newValue) => {
       class="form-input"
       :class="{ 'form-input--error': errorMessage && meta.touched }"
       :id="name"
-      placeholder="+7 (900) 123 45 67"
+      placeholder="+7 (000) 000 00 00"
       maxlength="18"
     />
   </div>
@@ -68,11 +80,21 @@ watch(phone, (newValue) => {
 }
 
 .form-input {
-  padding: 10px;
-  border: 1px solid #e0e0e0;
+  max-width: 260px;
+  height: 56px;
+  padding: 14px 16px;
+  border: none;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+  background-color: #F7F7FB;
   transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: #A0A3BD;
+  opacity: 1;
 }
 
 .form-input--error {
@@ -81,9 +103,11 @@ watch(phone, (newValue) => {
 }
 
 label {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   font-size: 14px;
-  color: #333;
+  line-height: 20px;
+  font-weight: 400;
+  color: #6F6C90;
 }
 
 @keyframes shake {

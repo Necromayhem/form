@@ -21,7 +21,6 @@ const toggleOption = (index: number) => {
 
 <template>
   <div class="options">
-    <div class="options__title">Что вам понравилось?</div>
     <div class="options__list">
       <button
         v-for="(option, index) in options"
@@ -39,42 +38,34 @@ const toggleOption = (index: number) => {
 
 <style scoped>
 .options {
-  margin-top: 20px;
-}
-
-.options__title {
-  margin-bottom: 10px;
-  font-weight: bold;
+  max-width: 549px;
+  margin: 0 auto;
+  margin-bottom: 36px;
 }
 
 .options__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 16px;
 }
 
 .options__item {
-  padding: 8px 16px;
+  padding: 5px 16px;
   border: 1px solid #e0e0e0;
   border-radius: 20px;
-  background: #f5f5f5;
+  background: #EFF0F6;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 14px;
-}
-
-.options__item:hover {
-  background: #e0e0e0;
-  border-color: #bdbdbd;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+  color: #170F49;
 }
 
 .options__item--active {
-  background: #bbdefb;
-  border-color: #2196f3;
-  color: #0d47a1;
+  background: #6F6C90;
+  color: #FFFFFF;
+  
 }
 
-.options__item--active:hover {
-  background: #90caf9;
-}
 </style>

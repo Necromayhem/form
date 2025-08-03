@@ -50,12 +50,14 @@ const handleClick = (rating: number) => {
 <style scoped>
 .rating {
   display: flex;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 36px;
 }
 
 .rating__items {
   display: flex;
-  gap: 8px;
+  gap: 22px;
   align-items: center;
 }
 
@@ -79,12 +81,14 @@ const handleClick = (rating: number) => {
 }
 
 .rating__star-path {
-  fill: #D9DBE9; 
-  transition: fill 0.2s ease;
+  fill: #FFFFFF; 
+  stroke: #D9DBE9; 
+  stroke-width: 1.5; 
+  transition: all 0.2s ease;
 }
 
 .rating__star-path--active {
-  fill: gold; 
+  fill: #FFE01A; 
+  stroke: #FFE01A; 
 }
-
 </style>

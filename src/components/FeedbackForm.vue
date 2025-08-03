@@ -95,24 +95,29 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
   max-width: 637px;
   margin: 0 auto;
   margin-top: 68px;
-  padding: 30px;
+  padding: 44px;
   background-color: #FFFFFF;
-  border-radius: 8px;
+  border-radius: 32px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .feedback-form__title {
-  margin-bottom: 10px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 34px;
+  line-height: 46px;
+  font-weight: bold;
+  color: #1F2937;
 }
 
 .feedback-form__subtitle {
+  text-align: center;
+  margin-bottom: 20px;
   display: block;
-  margin-bottom: 25px;
-  color: #666;
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #4B5563;
 }
 
 .form-section {
@@ -126,10 +131,7 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
 }
 
 .rating-section {
-  margin: 30px 0;
-  padding: 20px 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  margin: 0 auto;
 }
 
 .submit-button {

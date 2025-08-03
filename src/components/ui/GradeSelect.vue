@@ -81,9 +81,11 @@ watch(selectedGrade, (newValue) => {
 }
 
 label {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   font-size: 14px;
-  color: #333;
+  line-height: 20px;
+  font-weight: 400;
+  color: #6F6C90;
 }
 
 @keyframes shake {
