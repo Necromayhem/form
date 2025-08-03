@@ -6,10 +6,14 @@ const props = defineProps({
   name: {
     type: String,
     required: true
+  },
+  validateOnInput: {
+    type: Boolean,
+    default: false
   }
 });
 
-const { value, errorMessage } = useField<string>(props.name, (value) => {
+const { value, errorMessage, validate } = useField<string>(props.name, (value) => {
   if (!value) return 'Выберите грейд';
   return true;
 });
@@ -25,6 +29,9 @@ const grades = [
 
 watch(selectedGrade, (newValue) => {
   value.value = newValue;
+  if (props.validateOnInput) {
+    validate();
+  }
 });
 </script>
 

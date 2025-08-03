@@ -9,10 +9,12 @@ const props = defineProps({
   }
 });
 
-const { value, errorMessage } = useField<string>(props.name, (value) => {
+const { value, errorMessage, meta } = useField<string>(props.name, (value) => {
   if (!value) return 'Email обязателен';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Введите корректный email';
   return true;
+}, {
+  validateOnValueUpdate: false 
 });
 
 const inputValue = ref(value.value);
@@ -27,9 +29,9 @@ watch(inputValue, (newVal) => {
     <label :for="name">Почта</label>
     <input
       v-model="inputValue"
-      type="email"
+      type="text" 
       class="form-input"
-      :class="{ 'form-input--error': errorMessage }"
+      :class="{ 'form-input--error': errorMessage && meta.touched }"
       :id="name"
       placeholder="example@domain.com"
     />

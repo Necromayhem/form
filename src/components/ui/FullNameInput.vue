@@ -6,10 +6,14 @@ const props = defineProps({
   name: {
     type: String,
     required: true
+  },
+  validateOnInput: {
+    type: Boolean,
+    default: false
   }
 });
 
-const { value, errorMessage } = useField<string>(props.name, (value) => {
+const { value, errorMessage, validate } = useField<string>(props.name, (value) => {
   if (!value) return 'ФИО обязательно для заполнения';
   return true;
 });
@@ -18,6 +22,9 @@ const inputValue = ref(value.value);
 
 watch(inputValue, (newVal) => {
   value.value = newVal;
+  if (props.validateOnInput) {
+    validate();
+  }
 });
 </script>
 

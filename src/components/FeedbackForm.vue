@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useForm } from 'vee-validate';
@@ -22,7 +21,7 @@ const options = ref([
   { text: 'Все понятно и по делу', active: false }
 ]);
 
-const { handleSubmit } = useForm();
+const { handleSubmit, validate } = useForm();
 
 const onSubmit = handleSubmit(() => {
   console.log('Форма успешно отправлена', {
@@ -54,37 +53,39 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
 </script>
 
 <template>
-  <form class="feedback-form" @submit.prevent="onSubmit">
-    <h2 class="feedback-form__title">Форма обратной связи</h2>
-    <span class="feedback-form__subtitle">Пожалуйста, оцените свой опыт прохождения тестового</span>
-    
-    <div class="rating-section">
-      <StarRating 
-        :modelValue="rating" 
-        @update:modelValue="handleRatingUpdate" 
-      />
+  <teleport to='body'>
+    <form class="feedback-form" @submit.prevent="onSubmit" novalidate>
+      <h2 class="feedback-form__title">Форма обратной связи</h2>
+      <span class="feedback-form__subtitle">Пожалуйста, оцените свой опыт прохождения тестового</span>
       
-      <OptionButtonGroup 
-        v-show="rating > 0"
-        :options="options"
-        @update:options="handleOptionsUpdate"
-      />
-    </div>
-    
-    <div class="form-section">
-      <div class="form-row">
-        <FullNameInput name="fullName" />
-        <EmailInput name="email" />
+      <div class="rating-section">
+        <StarRating 
+          :modelValue="rating" 
+          @update:modelValue="handleRatingUpdate" 
+        />
+        
+        <OptionButtonGroup 
+          v-show="rating > 0"
+          :options="options"
+          @update:options="handleOptionsUpdate"
+        />
       </div>
       
-      <div class="form-row">
-        <PhoneInput name="phone" />
-        <GradeSelect name="grade" />
+      <div class="form-section">
+        <div class="form-row">
+          <FullNameInput name="fullName" />
+          <EmailInput name="email" />
+        </div>
+        
+        <div class="form-row">
+          <PhoneInput name="phone" />
+          <GradeSelect name="grade" />
+        </div>
       </div>
-    </div>
 
-    <button type="submit" class="submit-button">Отправить отзыв</button>
-  </form>
+      <button type="submit" class="submit-button">Отправить отзыв</button>
+    </form>
+  </teleport>
 
   <ErrorToaster ref="toaster" />
 </template>

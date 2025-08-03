@@ -9,9 +9,11 @@ const props = defineProps({
   }
 });
 
-const { value, errorMessage } = useField<string>(props.name, (value) => {
+const { value, errorMessage, meta } = useField<string>(props.name, (value) => {
   if (!value || value.length < 18) return 'Введите полный номер телефона';
   return true;
+}, {
+  validateOnValueUpdate: false 
 });
 
 const phone = ref(value.value || '+7 (');
@@ -50,7 +52,7 @@ watch(phone, (newValue) => {
       v-model="phone"
       type="tel"
       class="form-input"
-      :class="{ 'form-input--error': errorMessage }"
+      :class="{ 'form-input--error': errorMessage && meta.touched }"
       :id="name"
       placeholder="+7 (900) 123 45 67"
       maxlength="18"
