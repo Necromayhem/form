@@ -83,8 +83,8 @@ watch(phone, (newValue) => {
   max-width: 260px;
   height: 56px;
   padding: 14px 16px;
-  border: none;
-  border-radius: 4px;
+  border: 2px solid #F7F7FB;
+  border-radius: 8px;
   font-size: 16px;
   line-height: 28px;
   font-weight: 400;
