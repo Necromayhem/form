@@ -34,6 +34,7 @@ watch(selectedGrade, (newValue) => {
     <select
       v-model="selectedGrade"
       class="form-input"
+      :class="{ 'form-input--error': errorMessage }"
       :id="name"
     >
       <option value="" disabled>Выберите</option>
@@ -41,7 +42,6 @@ watch(selectedGrade, (newValue) => {
         {{ grade.label }}
       </option>
     </select>
-    <span v-if="errorMessage" class="error-text">{{ errorMessage }}</span>
   </div>
 </template>
 
@@ -65,6 +65,12 @@ watch(selectedGrade, (newValue) => {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.form-input--error {
+  border-color: #ff4444;
+  animation: shake 0.5s ease-in-out;
 }
 
 label {
@@ -73,9 +79,9 @@ label {
   color: #333;
 }
 
-.error-text {
-  color: #ff4444;
-  font-size: 12px;
-  margin-top: 5px;
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
 }
 </style>

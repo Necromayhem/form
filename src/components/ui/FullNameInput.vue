@@ -28,10 +28,10 @@ watch(inputValue, (newVal) => {
       v-model="inputValue"
       type="text"
       class="form-input"
+      :class="{ 'form-input--error': errorMessage }"
       :id="name"
       placeholder="Иван Иванов"
     />
-    <span v-if="errorMessage" class="error-text">{{ errorMessage }}</span>
   </div>
 </template>
 
@@ -47,6 +47,12 @@ watch(inputValue, (newVal) => {
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form-input--error {
+  border-color: #ff4444;
+  animation: shake 0.5s ease-in-out;
 }
 
 label {
@@ -55,9 +61,9 @@ label {
   color: #333;
 }
 
-.error-text {
-  color: #ff4444;
-  font-size: 12px;
-  margin-top: 5px;
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
 }
 </style>
