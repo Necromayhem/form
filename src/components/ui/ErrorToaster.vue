@@ -38,21 +38,22 @@ defineExpose({ showError });
 
 <template>
   <teleport to="body">
-    <div class="p-toast p-component p-toast-top-right">
-      <transition-group name="p-toast-message" tag="div" class="p-toast-message-container">
+    <div class="toast-container">
+      <transition-group name="toast-message" tag="div">
         <div 
           v-for="msg in messages" 
           :key="msg.id"
-          class="p-toast-message p-toast-message-error"
+          class="toast-message"
           @click="removeMessage(msg.id)"
         >
-          <div class="p-toast-message-content">
-            <span class="p-toast-message-icon pi pi-times-circle"></span>
-            <div class="p-toast-message-text">
-              <div class="p-toast-summary">{{ msg.message }}</div>
+          <div class="toast-content">
+            <span class="toast-icon">!</span>
+            <div class="toast-text">
+              <div class="toast-title">Ошибка</div>
+              <div class="toast-message-text">{{ msg.message }}</div>
             </div>
-            <button class="p-toast-icon-close p-link">
-              <span class="pi pi-times"></span>
+            <button class="toast-close" @click.stop="removeMessage(msg.id)">
+              <span>×</span>
             </button>
           </div>
         </div>
@@ -60,52 +61,98 @@ defineExpose({ showError });
     </div>
   </teleport>
 </template>
+
 <style scoped>
-.p-toast {
+.toast-container {
   position: fixed;
-  width: 500px;
-  bottom: 20px;  
+  width: 350px;
+  bottom: 20px;
   right: 20px;
   z-index: 1000;
 }
 
-.p-toast-message {
+.toast-message {
   margin-bottom: 1rem;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  background-color: red;
-  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 4px;
+  border-left: 4px solid #ff4444;
   position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.toast-content {
   display: flex;
-  overflow: hidden;
+  align-items: flex-start;
+  padding: 12px 16px;
 }
 
-.p-toast .p-toast-message-container {
-  position: relative;
-  overflow: hidden;
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 
-.p-toast-message-enter-from {
+.toast-text {
+  flex-grow: 1;
+}
+
+.toast-title {
+  font-weight: bold;
+  color: #ff4444;
+  margin-bottom: 4px;
+}
+
+.toast-message-text {
+  color: #333;
+  font-size: 14px;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 12px;
+  padding: 0;
+}
+
+.toast-close:hover {
+  color: #666;
+}
+
+.toast-message-enter-from {
   opacity: 0;
   transform: translateX(30px);
 }
 
-.p-toast-message-enter-active {
+.toast-message-enter-active {
   transition: all 0.3s ease;
 }
 
-.p-toast-message-leave-active {
+.toast-message-leave-active {
   transition: all 0.3s ease;
   position: absolute;
   right: 0;
   left: 0;
 }
 
-.p-toast-message-leave-to {
+.toast-message-leave-to {
   opacity: 0;
-  transform: translateY(-50%);
+  transform: translateY(30px);
 }
 
-.p-toast-message-move {
+.toast-message-move {
   transition: transform 0.3s;
 }
 </style>

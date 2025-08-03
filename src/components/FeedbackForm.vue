@@ -25,11 +25,9 @@ const options = ref([
 const { handleSubmit } = useForm();
 
 const onSubmit = handleSubmit(() => {
-  // Логика успешной отправки формы
   console.log('Форма успешно отправлена', {
     rating: rating.value,
     options: options.value.filter(opt => opt.active).map(opt => opt.text),
-    // другие данные формы...
   });
 }, ({ errors }) => {
   const errorMessages = Object.values(errors).flatMap(error => 
