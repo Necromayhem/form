@@ -69,7 +69,7 @@ const handleBlur = () => {
         @blur="handleBlur"
         required
       >
-        <option value="" disabled selected>Выберите</option>
+        <option value="" disabled hidden>Выберите</option>
         <option v-for="grade in grades" :key="grade.value" :value="grade.value">
           {{ grade.label }}
         </option>
@@ -150,11 +150,6 @@ const handleBlur = () => {
 .form-input option {
   color: #170F49;
   background-color: white;
-}
-
-.form-input option[value=""][disabled] {
-  color: #A0A3BD;
-  display: block;
 }
 
 .form-input--error {

@@ -38,7 +38,7 @@ watch(textareaValue, (newVal) => {
 }
 
 .form-textarea {
-  width: 549px;
+  max-width: 549px;
   height: 144px;
   padding: 14px 16px;
   border: 2px solid #F7F7FB;
@@ -48,18 +48,13 @@ watch(textareaValue, (newVal) => {
   font-weight: 400;
   background-color: #F7F7FB;
   transition: all 0.3s ease;
-  resize: none;
   font-family: inherit;
+  resize: none;
 }
 
 .form-textarea::placeholder {
   color: #A0A3BD;
   opacity: 1;
-}
-
-.form-textarea:focus {
-  outline: none;
-  border-color: #4A3AFF;
 }
 
 label {
