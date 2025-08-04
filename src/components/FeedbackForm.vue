@@ -46,7 +46,9 @@ const onSubmit = handleSubmit(() => {
     .filter(Boolean);
   
   errorMessages.forEach(error => {
-    toaster.value?.showError(error);
+    if (typeof error === 'string') {
+      toaster.value?.showError(error);
+    }
   });
 });
 
@@ -185,4 +187,3 @@ const handleCancel = () => {
   }
 }
 </style>
-
