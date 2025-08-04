@@ -7,6 +7,7 @@ import FullNameInput from './ui/FullNameInput.vue';
 import EmailInput from './ui/EmailInput.vue';
 import PhoneInput from './ui/PhoneInput.vue';
 import GradeSelect from './ui/GradeSelect.vue';
+import TextareaInput from './ui/TextareaInput.vue';
 import ErrorToaster from './ui/ErrorToaster.vue';
 
 const rating = ref(0);
@@ -81,6 +82,8 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
           <PhoneInput name="phone" />
           <GradeSelect name="grade" />
         </div>
+
+        <TextareaInput name="additionalInfo" />
       </div>
 
       <button type="submit" class="submit-button">Отправить отзыв</button>
@@ -127,7 +130,7 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
 .form-row {
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 
 .rating-section {
@@ -167,3 +170,4 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
   }
 }
 </style>
+
