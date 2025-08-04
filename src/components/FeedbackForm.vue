@@ -9,6 +9,7 @@ import PhoneInput from './ui/PhoneInput.vue';
 import GradeSelect from './ui/GradeSelect.vue';
 import TextareaInput from './ui/TextareaInput.vue';
 import ErrorToaster from './ui/ErrorToaster.vue';
+import FormButtons from './ui/FormButtons.vue';
 
 const rating = ref(0);
 const toaster = ref<InstanceType<typeof ErrorToaster> | null>(null);
@@ -86,7 +87,7 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
         <TextareaInput name="additionalInfo" />
       </div>
 
-      <button type="submit" class="submit-button">Отправить отзыв</button>
+      <FormButtons />
     </form>
   </teleport>
 
