@@ -32,13 +32,21 @@ const onSubmit = handleSubmit(() => {
   resetForm();
   rating.value = 0;
   options.value.forEach(option => option.active = false);
-}, ({ errors }) => {
-  const errorMessages = Object.values(errors).flatMap(error => 
-    typeof error === 'string' ? error : Object.values(error).flat()
-  );
+}, (context) => {
+  const { errors } = context;
+  
+  if (!errors) return;
+  
+  const errorMessages = Object.values(errors)
+    .flatMap(error => {
+      if (!error) return [];
+      if (typeof error === 'string') return error;
+      return Object.values(error).flat();
+    })
+    .filter(Boolean);
   
   errorMessages.forEach(error => {
-    if (error) toaster.value?.showError(error);
+    toaster.value?.showError(error);
   });
 });
 
