@@ -3,29 +3,47 @@ import { ref } from 'vue';
 
 interface ToastMessage {
   id: number;
-  message: string;
+  messages: string[];
   severity: 'error' | 'warn' | 'info' | 'success';
   life: number;
 }
 
 const messages = ref<ToastMessage[]>([]);
 let idCounter = 0;
+let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-const showError = (error: string | { [key: string]: any }) => {
-  const messageText = typeof error === 'string' ? error : 
-                     error.message || Object.values(error)[0] || 'Произошла ошибка';
-  
+const showError = (errors: string[] | string | { [key: string]: any }) => {
+  messages.value = [];
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+    timeoutId = null;
+  }
+  let errorMessages: string[];
+  if (Array.isArray(errors)) {
+    errorMessages = errors.filter(msg => typeof msg === 'string');
+  } else if (typeof errors === 'string') {
+    errorMessages = [errors];
+  } else {
+    errorMessages = Object.values(errors)
+      .flat()
+      .filter((msg): msg is string => typeof msg === 'string');
+  }
+
+  if (errorMessages.length === 0) {
+    errorMessages = ['Произошла ошибка'];
+  }
   const newMessage: ToastMessage = {
     id: idCounter++,
-    message: messageText,
+    messages: errorMessages, 
     severity: 'error',
-    life: 3000 
+    life: 3000, 
   };
 
-  messages.value.push(newMessage);
-  
-  setTimeout(() => {
+  messages.value = [newMessage]; 
+
+  timeoutId = setTimeout(() => {
     removeMessage(newMessage.id);
+    timeoutId = null;
   }, newMessage.life);
 };
 
@@ -49,8 +67,12 @@ defineExpose({ showError });
           <div class="toast-content">
             <span class="toast-icon">!</span>
             <div class="toast-text">
-              <div class="toast-title">Ошибка</div>
-              <div class="toast-message-text">{{ msg.message }}</div>
+              <div class="toast-title">Ошибки в форме</div>
+              <ul class="toast-message-list">
+                <li v-for="(error, index) in msg.messages" :key="index">
+                  {{ error }}
+                </li>
+              </ul>
             </div>
             <button class="toast-close" @click.stop="removeMessage(msg.id)">
               <span>×</span>
@@ -154,5 +176,20 @@ defineExpose({ showError });
 
 .toast-message-move {
   transition: transform 0.3s;
+}
+
+.toast-message-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.toast-message-list li {
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+.toast-message-list li:last-child {
+  margin-bottom: 0;
 }
 </style>

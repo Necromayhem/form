@@ -36,20 +36,17 @@ const onSubmit = handleSubmit(() => {
   const { errors } = context;
   
   if (!errors) return;
-  
   const errorMessages = Object.values(errors)
     .flatMap(error => {
       if (!error) return [];
       if (typeof error === 'string') return error;
       return Object.values(error).flat();
     })
-    .filter(Boolean);
+    .filter((error): error is string => typeof error === 'string');
   
-  errorMessages.forEach(error => {
-    if (typeof error === 'string') {
-      toaster.value?.showError(error);
-    }
-  });
+  if (errorMessages.length > 0) {
+    toaster.value?.showError(errorMessages); 
+  }
 });
 
 const handleRatingUpdate = (value: number) => {
