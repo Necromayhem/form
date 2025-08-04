@@ -34,6 +34,10 @@
   background: #eff0f6;
 }
 
+.cancel-button:active {
+  background-color: #9CA3AF;
+}
+
 .submit-button {
   width: 260px;
   padding: 12px 24px;
