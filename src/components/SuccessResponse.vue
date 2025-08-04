@@ -82,5 +82,4 @@ const handleBackClick = () => {
 .response-button:active {
   background: #191086;
 }
-
 </style>

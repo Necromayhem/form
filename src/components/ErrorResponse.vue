@@ -127,5 +127,4 @@ const handleClose = () => {
 .response-button.secondary:active {
   background-color: #9CA3AF;
 }
-
 </style>

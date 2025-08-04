@@ -1,8 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit = defineEmits(['cancel']);
+
+const handleCancel = () => {
+  emit('cancel');
+};
+</script>
 
 <template>
   <div class="buttons-container">
-    <button type="button" class="cancel-button">Отменить</button>
+    <button 
+      type="button" 
+      class="cancel-button"
+      @click="handleCancel"
+    >
+      Отменить
+    </button>
     <button type="submit" class="submit-button">Отправить</button>
   </div>
 </template>

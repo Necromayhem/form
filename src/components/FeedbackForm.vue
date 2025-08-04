@@ -11,6 +11,8 @@ import TextareaInput from './ui/TextareaInput.vue';
 import ErrorToaster from './ui/ErrorToaster.vue';
 import FormButtons from './ui/FormButtons.vue';
 
+const emit = defineEmits(['submit', 'cancel']);
+
 const rating = ref(0);
 const toaster = ref<InstanceType<typeof ErrorToaster> | null>(null);
 
@@ -23,13 +25,13 @@ const options = ref([
   { text: 'Все понятно и по делу', active: false }
 ]);
 
-const { handleSubmit, validate } = useForm();
+const { handleSubmit, resetForm } = useForm();
 
 const onSubmit = handleSubmit(() => {
-  console.log('Форма успешно отправлена', {
-    rating: rating.value,
-    options: options.value.filter(opt => opt.active).map(opt => opt.text),
-  });
+  emit('submit');
+  resetForm();
+  rating.value = 0;
+  options.value.forEach(option => option.active = false);
 }, ({ errors }) => {
   const errorMessages = Object.values(errors).flatMap(error => 
     typeof error === 'string' ? error : Object.values(error).flat()
@@ -51,6 +53,10 @@ const handleRatingUpdate = (value: number) => {
 
 const handleOptionsUpdate = (newOptions: typeof options.value) => {
   options.value = newOptions;
+};
+
+const handleCancel = () => {
+  emit('cancel');
 };
 </script>
 
@@ -87,7 +93,7 @@ const handleOptionsUpdate = (newOptions: typeof options.value) => {
         <TextareaInput name="additionalInfo" />
       </div>
 
-      <FormButtons />
+      <FormButtons @cancel="handleCancel" />
     </form>
   </teleport>
 
