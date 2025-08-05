@@ -38,7 +38,9 @@ watch(textareaValue, (newVal) => {
 }
 
 .form-textarea {
+  width: 100%;
   max-width: 549px;
+  min-width: 265px;
   height: 144px;
   padding: 14px 16px;
   border: 2px solid #F7F7FB;

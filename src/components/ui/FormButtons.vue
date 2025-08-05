@@ -29,7 +29,9 @@ const handleCancel = () => {
 }
 
 .cancel-button {
-  width: 260px;
+  width: 100%;
+  max-width: 260px;
+  min-width: 122px;
   padding: 12px 24px;
   background: #f7f7fb;
   border: 1px solid #d9dbe9;
@@ -51,7 +53,9 @@ const handleCancel = () => {
 }
 
 .submit-button {
-  width: 260px;
+  width: 100%;
+  max-width: 260px;
+  min-width: 122px;
   padding: 12px 24px;
   background: #4a3aff;
   border: none;

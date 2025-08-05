@@ -45,6 +45,7 @@ const toggleOption = (index: number) => {
 
 .options__list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
 }

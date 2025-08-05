@@ -35,14 +35,27 @@ const negativeOptions = [
   { text: "Слишком сложно для тестового", active: false },
 ];
 
+const neutralOptions = [
+  { text: "Нормик", active: false },
+  { text: "Легко", active: false },
+  { text: "Быстро сделал", active: false },
+  { text: "Долго разбирался", active: false },
+  { text: "Не понравилось", active: false },
+];
+
 watch(
   rating,
   (newRating) => {
-    if (newRating >= 3) {
+    if (newRating > 3) {
       currentOptions.value = JSON.parse(JSON.stringify(positiveOptions));
-    } else if (newRating > 0) {
+    } 
+    else if (newRating === 3) {
+      currentOptions.value = JSON.parse(JSON.stringify(neutralOptions));
+    }
+    else if (newRating > 0 && newRating < 3) {
       currentOptions.value = JSON.parse(JSON.stringify(negativeOptions));
-    } else {
+    }
+    else {
       currentOptions.value = [];
     }
   },
@@ -224,11 +237,31 @@ const handleCancel = () => {
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 350px) {
   .feedback-form {
     padding: 20px;
   }
 
+  :deep(.buttons-container) {
+    gap: 20px;
+  }
+
+    :deep(.options__list){
+    gap: 8px;
+  }
+
+  :deep(.options__item){
+    font-size: 12px;
+    line-height: 16px;
+    padding: 4px 8px;
+  }
+
+  :deep(.rating){
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 320px) {
   :deep(.form-input) {
     width: 265px;
     height: 40px;
@@ -236,7 +269,7 @@ const handleCancel = () => {
     line-height: 20px;
   }
 
-  :deep(.select-wrapper .form-input){
+  :deep(.select-wrapper .form-input) {
     font-size: 14px;
     padding-left: 16px;
     padding-top: 8px;
@@ -247,5 +280,23 @@ const handleCancel = () => {
     font-size: 14px;
     line-height: 20px;
   }
+
+  :deep(.cancel-button) {
+    font-size: 14px;
+    line-height: 20px;
+    height: 44px;
+  }
+
+  :deep(.submit-button) {
+    font-size: 14px;
+    line-height: 20px;
+    height: 44px;
+  }
+
+  :deep(.form-textarea){
+    height: 76px;
+    font-size: 14px;
+  }
+
 }
 </style>
