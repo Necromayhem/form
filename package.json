@@ -8,10 +8,11 @@
   },
   "scripts": {
   "dev": "vite",
-  "build": "npm run type-check && npm run build-only",
+  "build": "npm run generate-types && npm run build-only",
   "preview": "vite preview",
   "build-only": "vite build",
-  "type-check": "vue-tsc --noEmit --declaration --emitDeclarationOnly"
+  "type-check": "vue-tsc --noEmit",
+  "generate-types": "vue-tsc --declaration --emitDeclarationOnly --outDir dist"
 },
   "dependencies": {
     "pinia": "^3.0.3",
