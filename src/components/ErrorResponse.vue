@@ -127,4 +127,49 @@ const handleClose = () => {
 .response-button.secondary:active {
   background-color: #9CA3AF;
 }
+
+@media (max-width: 650px){
+  .response-container.error {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .response-container {
+    padding: 20px;
+  }
+
+  .response-title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .response-message {
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 40px;
+  }
+
+  .response-image {
+    width: 100px;
+    height: 90px;
+    margin-bottom: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .response-button {
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 16px;
+  }
+}
 </style>

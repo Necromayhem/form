@@ -82,4 +82,44 @@ const handleBackClick = () => {
 .response-button:active {
   background: #191086;
 }
+
+@media (max-width: 650px){
+  .response-container {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .response-container {
+    padding: 20px;
+  }
+
+  .response-title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .response-message {
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 40px;
+  }
+
+  .response-image {
+    width: 100px;
+    height: 90px;
+    margin-bottom: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .response-button {
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 16px;
+  }
+}
 </style>

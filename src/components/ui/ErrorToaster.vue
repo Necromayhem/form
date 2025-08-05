@@ -192,4 +192,39 @@ defineExpose({ showError });
 .toast-message-list li:last-child {
   margin-bottom: 0;
 }
+
+@media (max-width: 400px) {
+  .toast-container {
+    width: 280px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .toast-message {
+    margin-bottom: 0.5rem;
+  }
+
+  .toast-content {
+    padding: 8px 12px;
+  }
+
+  .toast-title {
+    font-size: 14px;
+  }
+
+  .toast-message-list li {
+    font-size: 12px;
+  }
+
+  .toast-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    margin-right: 8px;
+  }
+
+  .toast-close {
+    font-size: 14px;
+  }
+}
 </style>
